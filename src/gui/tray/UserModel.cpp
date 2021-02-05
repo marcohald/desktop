@@ -9,6 +9,7 @@
 #include "configfile.h"
 #include "notificationconfirmjob.h"
 #include "logger.h"
+#include "guiutility.h"
 
 #include <QDesktopServices>
 #include <QIcon>
@@ -719,7 +720,7 @@ Q_INVOKABLE void UserModel::openCurrentAccountTalk()
 
     const auto talkApp = currentUser()->talkApp();
     if (talkApp) {
-        QDesktopServices::openUrl(talkApp->url());
+        Utility::openBrowser(talkApp->url(), nullptr);
     } else {
         qCWarning(lcActivity) << "The Talk app is not enabled on" << currentUser()->server();
     }
@@ -732,9 +733,10 @@ Q_INVOKABLE void UserModel::openCurrentAccountServer()
 
     QString url = _users[_currentUserId]->server(false);
     if (!(url.contains("http://") || url.contains("https://"))) {
+        // TODO: Maybe we need to fix the condition? It looks totally wrong. Should probably use QString::startsWith and check for !url.startsWith("https://") ?
         url = "https://" + _users[_currentUserId]->server(false);
     }
-    QDesktopServices::openUrl(QUrl(url));
+    Utility::openBrowser(QUrl(url), nullptr);
 }
 
 Q_INVOKABLE void UserModel::switchCurrentUser(const int &id)
@@ -983,7 +985,7 @@ void UserAppsModel::buildAppList()
 
 void UserAppsModel::openAppUrl(const QUrl &url)
 {
-    QDesktopServices::openUrl(url);
+    Utility::openBrowser(url, nullptr);
 }
 
 int UserAppsModel::rowCount(const QModelIndex &parent) const

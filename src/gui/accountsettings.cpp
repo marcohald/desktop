@@ -1017,8 +1017,9 @@ void AccountSettings::slotForceSyncCurrentFolder()
 
 void AccountSettings::slotOpenOC()
 {
-    if (_OCUrl.isValid())
-        QDesktopServices::openUrl(_OCUrl);
+    if (_OCUrl.isValid()) {
+        Utility::openBrowser(_OCUrl, nullptr);
+    }
 }
 
 void AccountSettings::slotUpdateQuota(qint64 total, qint64 used)
