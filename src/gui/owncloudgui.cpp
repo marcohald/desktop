@@ -574,7 +574,7 @@ void ownCloudGui::slotToggleLogBrowser()
 void ownCloudGui::slotOpenOwnCloud()
 {
     if (auto account = qvariant_cast<AccountPtr>(sender()->property(propertyAccountC))) {
-        Utility::openBrowser(account->url(), nullptr);
+        Utility::openBrowser(account->url());
     }
 }
 

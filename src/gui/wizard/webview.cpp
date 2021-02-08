@@ -228,7 +228,7 @@ bool ExternalWebEnginePage::acceptNavigationRequest(const QUrl &url, QWebEngineP
 {
     Q_UNUSED(type);
     Q_UNUSED(isMainFrame);
-    Utility::openBrowser(url, nullptr);
+    Utility::openBrowser(url);
     return false;
 }
 

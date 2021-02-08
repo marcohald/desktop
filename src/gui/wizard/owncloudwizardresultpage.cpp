@@ -94,7 +94,7 @@ void OwncloudWizardResultPage::slotOpenServer()
 {
     Theme *theme = Theme::instance();
     QUrl url = QUrl(field("OCUrl").toString() + theme->wizardUrlPostfix());
-    Utility::openBrowser(url, nullptr);
+    Utility::openBrowser(url);
 }
 
 } // namespace OCC

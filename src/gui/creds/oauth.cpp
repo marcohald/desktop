@@ -175,7 +175,7 @@ QUrl OAuth::authorisationLink() const
 
 bool OAuth::openBrowser()
 {
-    if (!Utility::openBrowser(authorisationLink(), nullptr)) {
+    if (!Utility::openBrowser(authorisationLink())) {
         // We cannot open the browser, then we claim we don't support OAuth.
         emit result(NotSupported, QString());
         return false;

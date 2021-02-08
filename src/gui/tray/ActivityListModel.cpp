@@ -466,7 +466,7 @@ void ActivityListModel::triggerDefaultAction(int activityIndex)
         QDesktopServices::openUrl(path);
     } else {
         const auto link = data(modelIndex, LinkRole).toUrl();
-        Utility::openBrowser(link, nullptr);
+        Utility::openBrowser(link);
     }
 }
 
@@ -487,7 +487,7 @@ void ActivityListModel::triggerAction(int activityIndex, int actionIndex)
     const auto action = activity._links[actionIndex];
 
     if (action._verb == "WEB") {
-        Utility::openBrowser(QUrl(action._link), nullptr);
+        Utility::openBrowser(QUrl(action._link));
         return;
     }
 

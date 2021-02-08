@@ -720,7 +720,7 @@ Q_INVOKABLE void UserModel::openCurrentAccountTalk()
 
     const auto talkApp = currentUser()->talkApp();
     if (talkApp) {
-        Utility::openBrowser(talkApp->url(), nullptr);
+        Utility::openBrowser(talkApp->url());
     } else {
         qCWarning(lcActivity) << "The Talk app is not enabled on" << currentUser()->server();
     }
@@ -985,7 +985,7 @@ void UserAppsModel::buildAppList()
 
 void UserAppsModel::openAppUrl(const QUrl &url)
 {
-    Utility::openBrowser(url, nullptr);
+    Utility::openBrowser(url);
 }
 
 int UserAppsModel::rowCount(const QModelIndex &parent) const

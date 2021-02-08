@@ -1018,7 +1018,7 @@ void AccountSettings::slotForceSyncCurrentFolder()
 void AccountSettings::slotOpenOC()
 {
     if (_OCUrl.isValid()) {
-        Utility::openBrowser(_OCUrl, nullptr);
+        Utility::openBrowser(_OCUrl);
     }
 }
 
