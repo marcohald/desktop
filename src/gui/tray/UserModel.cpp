@@ -731,12 +731,12 @@ Q_INVOKABLE void UserModel::openCurrentAccountServer()
     if (_currentUserId < 0 || _currentUserId >= _users.size())
         return;
 
-    QUrl url = _users[_currentUserId]->server(false);
-    if (url.scheme() != "http" && url.scheme() != "https") {
-        url.setScheme("https");
+    QString url = _users[_currentUserId]->server(false);
+    if (!url.startsWith("http")) {
+        url = "https://" + _users[_currentUserId]->server(false);
     }
 
-    QDesktopServices::openUrl(QUrl(url));
+    QDesktopServices::openUrl(url);
 }
 
 Q_INVOKABLE void UserModel::switchCurrentUser(const int &id)
