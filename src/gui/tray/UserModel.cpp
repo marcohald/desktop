@@ -731,12 +731,12 @@ Q_INVOKABLE void UserModel::openCurrentAccountServer()
     if (_currentUserId < 0 || _currentUserId >= _users.size())
         return;
 
-    QString url = _users[_currentUserId]->server(false);
-    if (!(url.contains("http://") || url.contains("https://"))) {
-        // TODO: Maybe we need to fix the condition? It looks totally wrong. Should probably use QString::startsWith and check for !url.startsWith("https://") ?
-        url = "https://" + _users[_currentUserId]->server(false);
+    QUrl url = _users[_currentUserId]->server(false);
+    if (url.scheme() != "http" && url.scheme() != "https") {
+        url.setScheme("https");
     }
-    Utility::openBrowser(QUrl(url), nullptr);
+
+    QDesktopServices::openUrl(QUrl(url));
 }
 
 Q_INVOKABLE void UserModel::switchCurrentUser(const int &id)

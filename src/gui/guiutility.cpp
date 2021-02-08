@@ -22,20 +22,17 @@
 #include <QUrlQuery>
 
 #include "common/asserts.h"
-
-namespace {
-    const QStringList whitelistedUrlSchemes = {
-        "http",
-        "https"
-    };
-};
-
 using namespace OCC;
 
 Q_LOGGING_CATEGORY(lcUtility, "nextcloud.gui.utility", QtInfoMsg)
 
 bool Utility::openBrowser(const QUrl &url, QWidget *errorWidgetParent)
 {
+    const QStringList whitelistedUrlSchemes = {
+        "http",
+        "https"
+    };
+
     if (!whitelistedUrlSchemes.contains(url.scheme())) {
         qCWarning(lcUtility) << "URL format is not supported, or it has been compromised for:" << url.toString();
         return false;
