@@ -28,12 +28,12 @@ Q_LOGGING_CATEGORY(lcUtility, "nextcloud.gui.utility", QtInfoMsg)
 
 bool Utility::openBrowser(const QUrl &url, QWidget *errorWidgetParent)
 {
-    const QStringList whitelistedUrlSchemes = {
+    const QStringList allowedUrlSchemes = {
         "http",
         "https"
     };
 
-    if (!whitelistedUrlSchemes.contains(url.scheme())) {
+    if (!allowedUrlSchemes.contains(url.scheme())) {
         qCWarning(lcUtility) << "URL format is not supported, or it has been compromised for:" << url.toString();
         return false;
     }
